@@ -20,8 +20,9 @@ docker run --env-file .env viam-rdk
 
 ## Run Viam Server with Persistent Volume
 
-myvol12:                Host machine directory
-/root/.viam/capture:    Viam default data capture folder
+```myvol12```:                Host machine directory
+
+```/root/.viam/capture```:    Viam default data capture folder
 
 ```
 docker run --env-file .env --mount source=myvol2,target=/root/.viam/capture viam-rdk
