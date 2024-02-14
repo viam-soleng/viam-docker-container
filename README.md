@@ -30,9 +30,9 @@ docker run -d --env-file .env viam-rdk
 
 ## Instantiate Viam Server Container with Persistent Volume
 
-```viam```:          The directory on the Docker host machine
+```viam```&emsp;&emsp;&emsp;&emsp;&emsp;The directory on the Docker host machine
 
-```/root/.viam/```:  Viam default data capture folder. If you change this as part of the smart machine data manager configuration, you will have to update it here too.
+```/root/.viam/```&emsp;Viam default data capture folder. If you change this as part of the smart machine data manager configuration, you will have to update it here too.
 
 ```
 # Run detached container:
