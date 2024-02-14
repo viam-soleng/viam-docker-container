@@ -1,14 +1,13 @@
 FROM golang:1.20
 
 RUN apt update
-
 RUN apt install libjpeg-dev -y
 
 WORKDIR /app
 
 COPY ./src/* ./
 
-RUN go mod download
+RUN go mod tidy
 
 RUN GOOS=linux go build -o client
 
