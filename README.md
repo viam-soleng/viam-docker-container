@@ -36,12 +36,12 @@ docker run -d --env-file .env viam-rdk
 ```
 # Run detached container:
 
-docker run --env-file .env --mount source=viam,target=/root/.viam/ viam-rdk
+docker run --env-file .env --mount source=viam,target=/root/.viam/ -h viam-rdk --name viam-rdk viam-rdk
 
 # Run container with interactive shell. Setup script setup.sh won't be executed automatically!
 # Use this to tweak the image before installing/starting Viam server.
 
-docker run --env-file .env --mount source=viam,target=/root/.viam/ -it viam-rdk bash
+docker run --env-file .env --mount source=viam,target=/root/.viam/ -it -h viam-rdk --name viam-rdk viam-rdk bash
 ```
 
 
