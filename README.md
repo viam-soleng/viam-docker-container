@@ -1,11 +1,10 @@
-# Viam in Docker Container Best Practices
+# Viam Docker Container Best Practices
 
 Running applications and services inside Docker containers is popular. Within this repository we provide a few tips and tricks around how to use Viam with Docker containers.
 The repository contains a section about creating a Docker image with the Viam RDK and how to use it in different ways.
 If you are more interested in connecting to a Viam service, have a look at the Viam client section further down in this README.md.
 
-## Build and Run the Viam RDK Docker Container
-
+## Viam RDK Docker Container
 
 ### Build the Docker Image
 
@@ -28,7 +27,7 @@ The following command will use the previously built container image ```viam-rdk`
 docker run -d --env-file .env viam-rdk
 ```
 
-### Instantiate Viam Server Container with Persistent Volume
+### Container with Persistent Volume
 
 ```viam```&emsp;&emsp;&emsp;&emsp;&emsp;The directory on the Docker host machine
 
@@ -46,7 +45,7 @@ docker run --env-file .env --mount source=viam,target=/root/.viam/ -it viam-rdk 
 ```
 
 
-## Build and Run Viam Client Applications as Docker Container
+## Viam Client Applications as Docker Container
 
 Viam provides you with a wide variety of SDKs to write client applications. While you can install the prerequisites on your local system 
 to execute these client applications, Docker containers are a very handy tool to test code without changes to your local machine.
