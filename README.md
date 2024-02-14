@@ -28,7 +28,7 @@ The following command will use the previously built container image ```viam-rdk`
 docker run -d --env-file .env viam-rdk
 ```
 
-## Instantiate Viam Server Container with Persistent Volume
+### Instantiate Viam Server Container with Persistent Volume
 
 ```viam```&emsp;&emsp;&emsp;&emsp;&emsp;The directory on the Docker host machine
 
