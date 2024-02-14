@@ -36,19 +36,30 @@ docker run -d --env-file .env viam-rdk
 
 ```
 # Run detached container:
+
 docker run --env-file .env --mount source=viam,target=/root/.viam/ viam-rdk
 
 # Run container with interactive shell. Setup script setup.sh won't be executed automatically!
-# Use this to tweak the image before installing/starting Viam server
+# Use this to tweak the image before installing/starting Viam server.
+
 docker run --env-file .env --mount source=viam,target=/root/.viam/ -it viam-rdk bash
 ```
 
 
 ## Build and Run Viam Client Applicatinos as Docker Container
 
+Viam provides you a wide variety of SDKs to write client applications. While you can install the prerequisits on your local system 
+to execute these client applications, Docker containers are a very handy tool to test code without changes to your local machine.
+
+The easiest way to get started with a client application is when you have a connected smart machine in [app.viam.com](https://app.viam.com). Simply navigate to the ```Code Sample``` tab and check out the code samples in different languages.
+
+The following instruction will show how easy you can execute these code samples with Docker containers.
 
 
-### Build Client Image
+### Build a "Go" Client Image
+
+The folder ```client/go/src``` contains the ```client.go``` file. Simply replace the existing code with your own or to get started easily the sample code from [app.viam.com](https://app.viam.com).
+Then build the container by running the following command from within ```client/go/```.
 
 ```
 docker build -t viam-client .
@@ -56,6 +67,12 @@ docker build -t viam-client .
 
 ### Instantiate Client Container
 
+Once you have built the container image in the previous step, you can simply instantiate the container and execute your client code.
+
 ```
+# Run your code automatically
 docker run viam-client
+
+# Start your container with a shell and execute the code manually
+docker run -it viam-client bash
 ```
