@@ -8,9 +8,16 @@ If you are more interested in connecting to a Viam service, have a look at the V
 
 ### Build the Docker Image
 
+The easiest way to get an up to date docker image is to use the Dockerfile in the ```server/light/``` folder. 
+This image, when instantiated, will connect to the internet and download/install/start the Viam RDK.
+
+Under some circumstances however you might want to build a container image, which has all the binaries already installed to avoid donloading large amounts of data.
+The Dockerfile in the ```server/heavy/``` folder will create an image with a preinstalled Viam server, downloading the files during build time.
+
 ```
 docker build -t viam-rdk .
 ```
+
 
 ### Configure the Container [.env]
 
@@ -25,6 +32,12 @@ The following command will use the previously built container image ```viam-rdk`
 
 ```
 docker run -d --env-file .env viam-rdk
+```
+
+Instantiate the "heavy" docker image by providing the ```viam.json``` file at startup.
+
+```
+docker run -d -v ./config:/config/ viam-rdk
 ```
 
 ### Container with Persistent Volume
@@ -43,6 +56,18 @@ docker run --env-file .env --mount source=viam,target=/root/.viam/ -h viam-rdk -
 
 docker run --env-file .env --mount source=viam,target=/root/.viam/ -it -h viam-rdk --name viam-rdk viam-rdk bash
 ```
+
+
+
+
+### Container Port Settings
+
+The Viam RDK by default binds to port ```8080```. This setting can be overriden in the ```viam.json``` config file through [app.viam.com](https://app.viam.com).
+Should you have other services conflicting with the default port, you can simply change the port any time. Viam uses WebRTC and signaling servers and thus allows you to connect from anywhere without any changes to the container.
+
+However if the container is not connected to the internet, it may be required to use the local direct URL to establish connectivity. In that case you will have to expose the port of the container.
+
+
 
 
 ## Viam Client Applications as Docker Container
