@@ -6,56 +6,7 @@ If you are more interested in connecting to a Viam service, have a look at the V
 
 ## Viam RDK Docker Container
 
-### Build the Docker Image
 
-The easiest way to get an up to date docker image is to use the Dockerfile in the ```server/light/``` folder. 
-This image, when instantiated, will connect to the internet and download/install/start the Viam RDK.
-
-Under some circumstances however you might want to build a container image, which has all the binaries already installed to avoid donloading large amounts of data.
-The Dockerfile in the ```server/heavy/``` folder will create an image with a preinstalled Viam server, downloading the files during build time.
-
-```
-docker build -t viam-rdk .
-```
-
-
-### Configure the Container [.env]
-
-The ```.env``` file is an easy way to parametrize your Viam Docker container.
-All you have to do first is to create a robot at [app.viam.com](https://app.viam.com]) and from the setup instructions for Linux, copy the Config command.
-
-Then in the ```.env``` file replace the existing placeholder config command [key: Config]. 
-
-### Instantiate Viam Server Container
-
-The following command will use the previously built container image ```viam-rdk``` and the updated ```.env``` file and create a running instance of the container.
-
-```
-docker run -d --env-file .env viam-rdk
-```
-
-Instantiate the "heavy" docker image by providing the ```viam.json``` file at startup.
-
-```
-docker run -d -v ./config:/config/ viam-rdk
-```
-
-### Container with Persistent Volume
-
-```viam```&emsp;&emsp;&emsp;&emsp;&emsp;The directory on the Docker host machine
-
-```/root/.viam/```&emsp;Viam default data capture folder. If you change this as part of the smart machine data manager configuration, you will have to update it here too.
-
-```
-# Run detached container:
-
-docker run --env-file .env --mount source=viam,target=/root/.viam/ -h viam-rdk --name viam-rdk viam-rdk
-
-# Run container with interactive shell. Setup script setup.sh won't be executed automatically!
-# Use this to tweak the image before installing/starting Viam server.
-
-docker run --env-file .env --mount source=viam,target=/root/.viam/ -it -h viam-rdk --name viam-rdk viam-rdk bash
-```
 
 
 
